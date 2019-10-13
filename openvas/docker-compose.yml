@@ -1,0 +1,15 @@
+version: '2'
+
+services:
+  svc:
+    image: openvas
+    build: .
+    restart: always
+    volumes:
+      - ./data:/var/lib/openvas
+    environment:
+      - ADMIN_PASS=
+      - ALLOW_HEADER_HOST=gsa.example.com
+    ports:
+    - 80:80
+    - 9392:9392
