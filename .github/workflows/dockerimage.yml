@@ -1,0 +1,17 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: nexus166/kali
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the Docker image
+      run: |
+        apt-get update
+        apt-get install -y debootstrap wget openssl
+        bash -x ./build.sh
